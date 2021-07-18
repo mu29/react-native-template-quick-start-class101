@@ -65,19 +65,22 @@ platform :ios do
 end
 
 platform :android do
+  lane :build do
+    keystore
+
+    gradle(task: 'clean', project_dir: 'android/')
+    gradle(task: 'bundle', build_type: 'Release', project_dir: 'android/')
+
+    sh("open ../android/app/build/outputs/bundle/release")
+  end
+
   lane :keystore do
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     keystore_password = ENV['KEYSTORE_PASSWORD']
 
-    sh("mkdir -p ../android/app/keystores")
-    sh("keytool -genkey -v -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -storepass #{keystore_password} -keypass #{keystore_password} -alias #{app_identifier} -keystore ../android/app/keystores/release.keystore -dname \"CN=#{app_identifier},OU=,O=,L=,S=,C=KR\"")
-  end
-
-  lane :build do
-    app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-    keystore_password = ENV['KEYSTORE_PASSWORD']
-
-    gradle(task: 'clean', project_dir: 'android/')
-    gradle(task: 'bundle', build_type: 'Release', project_dir: 'android/')
+    unless File.exist? '../android/app/keystores/release.keystore'
+      sh("mkdir -p ../android/app/keystores")
+      sh("keytool -genkey -v -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -storepass #{keystore_password} -keypass #{keystore_password} -alias #{app_identifier} -keystore ../android/app/keystores/release.keystore -dname \"CN=#{app_identifier},OU=,O=,L=,S=,C=KR\"")
+    end
   end
 end

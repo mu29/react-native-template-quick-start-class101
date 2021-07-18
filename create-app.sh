@@ -18,9 +18,9 @@ cd TempApp
 ls
 
 npx react-native-rename "$name" -b "$bundle"
-sed -i '' 's/\(REACT_NATIVE_PROJECT_NAME=\).*/\1"'$name'"/g' .env
-sed -i '' 's/\(APP_IDENTIFIER=\).*/\1"'$bundle'"/g' .env
-sed -i '' 's/\(KEYSTORE_PASSWORD=\).*/\1"'$password'"/g' .env
+sed -i '' 's/\(REACT_NATIVE_PROJECT_NAME=\).*/\1'$name'/g' .env
+sed -i '' 's/\(APP_IDENTIFIER=\).*/\1'$bundle'/g' .env
+sed -i '' 's/\(KEYSTORE_PASSWORD=\).*/\1'$password'/g' .env
 
 cat .env
 
