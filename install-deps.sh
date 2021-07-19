@@ -6,6 +6,8 @@ touch ~/.zshrc
 # Node.js
 brew install node@14
 
+ln -s $(which node) /usr/local/bin/node
+
 # Watchman
 brew install watchman
 
@@ -30,6 +32,7 @@ echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.zshrc
 source ~/.zshrc
 
 sdkmanager "platforms;android-29" "build-tools;29.0.3" "add-ons;addon-google_apis-google-24"
+sdkmanager --licenses
 
 # iOS
 brew install cocoapods@1.10.1
@@ -37,6 +40,3 @@ brew install cocoapods@1.10.1
 # Additional tools
 python -mwebbrowser https://developer.android.com/studio
 python -mwebbrowser https://apps.apple.com/kr/app/xcode/id497799835
-
-# Config
-ln -s $(which node) /usr/local/bin/node

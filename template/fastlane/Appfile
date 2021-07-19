@@ -3,4 +3,3 @@ Dotenv.load '../.env'
 
 app_identifier(ENV['APP_IDENTIFIER'])
 apple_id("something@naver.com")
-team_id ""
