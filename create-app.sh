@@ -20,7 +20,7 @@ npx react-native-rename@2.9.0 "$name" -b "$bundle"
 sed -i '' 's/\(REACT_NATIVE_PROJECT_NAME=\).*/\1'$name'/g' .env
 sed -i '' 's/\(APP_IDENTIFIER=\).*/\1'$bundle'/g' .env
 sed -i '' 's/\(KEYSTORE_PASSWORD=\).*/\1'$password'/g' .env
-sed -i '' 's/\(PRODUCT_BUNDLE_IDENTIFIER = \).*/\1"'"$bundle"'"/g' ios/$name.xcodeproj/project.pbxproj
+sed -i '' 's/\(PRODUCT_BUNDLE_IDENTIFIER = \).*/\1"'"$bundle"'";/g' ios/$name.xcodeproj/project.pbxproj
 
 cd ..
 mv TempApp $name
