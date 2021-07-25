@@ -3,12 +3,12 @@
 touch ~/.zshrc
 
 # Homebrew
-if ![ -x "$(command -v brew)" ]; then
+if ! [ -x "$(command -v brew)" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Node.js
-if ![ -x "$(command -v node)" ]; then
+if ! [ -x "$(command -v node)" ]; then
   brew install node@14
   ln -s $(which node) /usr/local/bin/node
 
@@ -16,12 +16,12 @@ if ![ -x "$(command -v node)" ]; then
 fi
 
 # Watchman
-if ![ -x "$(command -v watchman)" ]; then
+if ! [ -x "$(command -v watchman)" ]; then
   brew install watchman
 fi
 
 # Java
-if ![ -z brew list -1 | grep -a "adoptopenjdk8"]; then
+if ! [ -z $(brew list -1 | grep -a "adoptopenjdk8")]; then
   brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
 
   echo 'export JAVA_HOME=$(/usr/libexec/java_home)' >> ~/.zshrc
@@ -31,7 +31,7 @@ if ![ -z brew list -1 | grep -a "adoptopenjdk8"]; then
 fi
 
 # Android
-if ![ -z brew list -1 | grep -a "android-sdk"]; then
+if ! [ -z $(brew list -1 | grep -a "android-sdk")]; then
   brew install --cask android-sdk
 
   echo 'export ANDROID_HOME=/usr/local/share/android-sdk' >> ~/.zshrc
@@ -51,7 +51,7 @@ if ![ -z brew list -1 | grep -a "android-sdk"]; then
 fi
 
 # iOS
-if ![ -x "$(command -v pod)" ]; then
+if ! [ -x "$(command -v pod)" ]; then
   brew install cocoapods
 fi
 
