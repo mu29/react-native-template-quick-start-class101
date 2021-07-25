@@ -1,3 +1,5 @@
+#!/bin/bash
+
 touch ~/.zshrc
 
 # Homebrew
@@ -31,11 +33,14 @@ echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.zshrc
 
 source ~/.zshrc
 
+touch ~/.android/repositories.cfg
 sdkmanager "platforms;android-29" "build-tools;29.0.3" "add-ons;addon-google_apis-google-24"
+sdkmanager "system-images;android-29;google_apis_playstore;x86"
 sdkmanager --licenses
+echo "no" | avdmanager --verbose create avd --force --name "test" --package "system-images;android-29;google_apis_playstore;x86" --tag "google_apis_playstore" --abi "x86" --device pixel
 
 # iOS
-brew install cocoapods@1.10.1
+brew install cocoapods
 
 # Additional tools
 python -mwebbrowser https://developer.android.com/studio
