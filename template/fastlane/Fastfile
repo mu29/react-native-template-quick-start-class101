@@ -54,7 +54,7 @@ platform :ios do
     build_app(
       scheme: project_name,
       configuration: "Release",
-      project: "ios/#{project_name}.xcodeproj",
+      workspace: "ios/#{project_name}.xcworkspace",
     )
 
     deliver(
